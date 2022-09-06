@@ -7,7 +7,7 @@
 <script>
 export default {};
 </script>
-<style>
+<style scoped>
 img {
   width: 100px;
   animation: myAnim 2s ease 0s 1 normal forwards;

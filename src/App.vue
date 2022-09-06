@@ -1,17 +1,18 @@
 <template>
-  <nav>
-    
-    <Navbar />
-    <router-view></router-view>
+  <Navbar />
+
+  <router-view v-slot="{ Component }">
+    <transition name="fade" mode="out-in">
+      <component :is="Component" />
+    </transition>
     <Footer />
-  </nav>
-  <router-view />
+  </router-view>
 </template>
 
 <script>
 import Navbar from "./components/Navbar.vue";
 import Footer from "./components/Footer.vue";
-// import HomeView from
+
 export default {
   components: {
     Navbar,
@@ -20,7 +21,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

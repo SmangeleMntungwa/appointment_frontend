@@ -14,7 +14,7 @@ export default {
   props: ["property"],
 };
 </script>
-<style>
+<style scoped>
 h2 {
   color: white;
 }
