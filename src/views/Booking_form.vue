@@ -3,7 +3,6 @@
   <section class="appointment-section">
     <div class="container">
       <div class="sec-title">
-        <div class="title">Do You Want to Work</div>
         <h2>Appoinment</h2>
       </div>
       <div class="row clearfix">
@@ -28,7 +27,7 @@
                     <!--Form Group-->
                     <div class="form-group">
                       <select class="custom-select-box">
-                        <option>Service Catogaries</option>
+                        <option>Therapy Catogaries</option>
                         <option>Category One</option>
                         <option>Category Two</option>
                         <option>Category Three</option>
@@ -106,7 +105,7 @@
                 <li>Saturday 9.00 AM - 3.00 PM</li>
                 <li><strong>Sunday Closed</strong></li>
                 <li class="closed">
-                  * Every 2nd, 4th Staurday and all govt holidays are closed.
+                  * All government holidays are closed.
                 </li>
               </ul>
             </div>
@@ -132,7 +131,7 @@ ul {
 }
 .sec-title .title {
   position: relative;
-  color: #00b8ca;
+  color: #0a0b0b;
   font-size: 18px;
   font-weight: 700;
   padding-right: 50px;
@@ -179,7 +178,7 @@ ul {
   position: absolute;
   right: 15px;
   top: 15px;
-  color: #00b8ca;
+  color: #070808;
   font-size: 18px;
 }
 .default-form .form-group input[type="text"],
@@ -206,7 +205,7 @@ ul {
 .default-form .form-group input[type="tel"]:focus,
 .default-form .form-group input[type="email"]:focus,
 .default-form .form-group textarea:focus {
-  border-color: #00b8ca;
+  border-color: #070707;
 }
 .default-form .form-group textarea {
   position: relative;
@@ -234,8 +233,8 @@ ul {
   padding: 11px 30px;
   margin-top: 10px;
   display: inline-block;
-  background-color: #00b8ca;
-  border: 1px solid #00b8ca;
+  background-color: #080808;
+  border: 1px solid #050a0b;
   text-transform: uppercase;
   color: #fff;
 }
@@ -266,7 +265,7 @@ ul {
 .appointment-section .schedule-column .inner-column {
   position: relative;
   padding: 25px 30px;
-  border: 2px solid #00b8ca;
+  border: 2px solid #090909;
   background-color: #fff;
 }
 .appointment-section .schedule-column h2 {
@@ -295,6 +294,6 @@ ul {
 }
 .appointment-section .schedule-column .time-list .closed {
   position: relative;
-  color: #00b8ca;
+  color: #050707;
 }
 </style>

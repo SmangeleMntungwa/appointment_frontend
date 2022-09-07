@@ -5,28 +5,42 @@
         <div class="col text-center">
           <h1>About This Site</h1>
           <p>
-            Please note that this site is made as an full-stack project made
-            from inspiration about spiritual healing, none of the Therapys
-            listed in the app are not official or available !
+            Vumilanga's House Of Healing is a healing space for everyone across
+            the world offering mainly African Therapy and Western Therapy which
+            covers massages, meditation, card readings and many more.
           </p>
         </div>
         <hr />
       </div>
+
       <div class="row">
         <div class="col">
           <p>
-            Vumilanga is a healing space that caters for everyon on Earth.
+            We are Eternal Souls having a human experience.
             <br />
-             We believe healing makes you the best version of yourself in all areas of your life.
-            <br />
-            When you voice this truth with an open heart, it makes it easier for
-            someone to access theirs.
-            <br />
-            Your soul had a dream, your life is it.
-            <br />
+            <img
+              src="https://i.postimg.cc/x1jGYqKf/Rebecca-Campbell-Returning.jpg"
+              class="myImage"
+            />
             We are Children of the Earth and the Sky.
             <br />
-            Eternal Souls having a human experience.
+            <img
+              src="https://i.postimg.cc/gcCRqBKX/Plant-yourself-here-scaled.jpg"
+              class="myImage"
+            />
+            Your soul had a dream, your life is it.
+            <br />
+            <img
+              src="https://i.postimg.cc/YqBGmLpQ/Embracing-your-humanness-scaled.jpg"
+              class="myImage"
+            />
+            Come and heal,
+            <br /><img
+              src="https://i.postimg.cc/QCJX7tbq/The-one-true-authority-2-scaled.jpg"
+              class="myImage"
+            />
+
+            <br />
           </p>
         </div>
       </div>
@@ -35,26 +49,17 @@
       </div>
     </div>
   </section>
-
-  <div>
-    <body>
-      <img
-        src="https://i.postimg.cc/x1jGYqKf/Rebecca-Campbell-Returning.jpg"
-        class="myImage"
-      />
-    </body>
-  </div>
 </template>
 
 <script>
-// export default {};
+export default {};
 </script>
 
 <style scoped>
 .myImage {
   float: left;
-  height: 10%;
-  width: 10%;
+  height: 20%;
+  width: 25%;
   font-family: Veranda;
   position: center;
 }

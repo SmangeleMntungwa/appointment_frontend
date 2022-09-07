@@ -1,108 +1,178 @@
 <template>
-  <form action="https://formspree.io/f/myylzlqv" method="POST">
-    <h1>Contact Me</h1>
-    <div>
-      <label for="name">Your Name: </label>
-      <input type="text" name="name" id="name" placeholder="Full name" />
+  <section id="Login">
+    <div
+      class="container"
+      aria-hidden="false"
+      aria-label="Dialog open. Sign in to start taking action"
+    >
+      <h3>Admin Login</h3>
+      <div class="row">
+        <div class="col-12">
+          <form @submit.prevent="login">
+            <div id="login-fields">
+              <div class="mb-4">
+                <div class="">
+                  <input
+                    type="email"
+                    aria-label="Email Address"
+                    v-model="email"
+                    required
+                    placeholder="Email Address"
+                  />
+                </div>
+              </div>
+              <div class="mb-4">
+                <input
+                  v-model="password"
+                  type="password"
+                  required
+                  aria-label="Password"
+                  placeholder="Password"
+                />
+              </div>
+              <button
+                class="btn btn-primary w-100 mb-2 text-uppercase"
+                type="submit"
+                aria-label="Sign In"
+              >
+                <span class=""><span class="">Sign In</span></span>
+              </button>
+            </div>
+            <fieldset class="text-left"></fieldset>
+          </form>
+        </div>
+      </div>
     </div>
-    <div>
-      <label for="email">Your email:</label>
-      <input
-        type="email"
-        name="email"
-        id="email"
-        placeholder="email@domain.com"
-      />
-    </div>
-    <div>
-      <label for="number">Your email:</label>
-      <input type="tel" name="number" id="number" placeholder="012 345 6789" />
-    </div>
-    <div>
-      <label for="message">Your message:</label>
-      <textarea
-        name="message"
-        id="message"
-        placeholder="Your message"
-      ></textarea>
-    </div>
-
-    <!-- your other form fields go here -->
-
-    <button type="submit">Send</button>
-  </form>
+  </section>
 </template>
 
-<script></script>
+<script>
+export default {
+  data() {
+    return {
+      email: "",
+      password: "",
+    };
+  },
+  methods: {
+    login() {
+      fetch("https://smangele-api.herokuapp.com/Patients", {
+        method: "PATCH",
+        body: JSON.stringify({
+          Patient_email: this.Patient_email,
+          Patient_password: this.Patient_password,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          if (json.jwt) {
+            localStorage.setItem("jwt", json.jwt);
+          }
+          if (localStorage.getItem("jwt")) {
+            location.reload();
+          } else {
+            alert("Incorrect Credentials");
+          }
+        })
+        .catch((err) => {
+          alert(err);
+        });
+    },
+  },
+  mounted() {
+    if (localStorage.getItem("jwt")) {
+      fetch("https://smangele-api.herokuapp.com/Patients/patient/", {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          let isadmin = json.isadmin;
+          if (isadmin == true) {
+            this.$router.push({ name: "Admin" });
+          }
+          if (isadmin == false) {
+            alert("You are Not ADMIN");
+            this.$router.push({ name: "Home" });
+          }
+        })
+        .catch((err) => {
+          alert(err);
+        });
+    }
+  },
+};
+</script>
 
 <style scoped>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url(https://postimg.cc/qNd0J4bc);
-  background-size: cover;
-  background-position: center;
-}
-
-form {
-  background: rgba(15, 15, 15, 0.865);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(7px);
-  -webkit-backdrop-filter: blur(7px);
-  border-radius: 10px;
-  padding: 5% 10%;
-  display: flex;
-  flex-direction: column;
-  color: rgb(252, 244, 244);
-  font-family: sans-serif;
-}
-
-label {
-  display: none;
-}
-
-input,
-textarea,
-button {
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(7px);
-  -webkit-backdrop-filter: blur(7px);
-  border-radius: 10px;
-  border: none;
-  padding: 10px;
-  margin-bottom: 20px;
-}
-
-div,
-input,
-textarea,
-button {
+.container {
+  display: grid;
   width: 100%;
+  min-width: 100%;
+  justify-content: center;
+  align-content: center;
+  text-align: left;
+  min-height: 100%;
+  margin: auto;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(247, 247, 247, 0.97);
+  box-shadow: none;
+  border: 0;
+  overflow-y: auto;
 }
-
-h1 {
-  text-transform: uppercase;
-  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
-  margin-bottom: 20px;
+.horizontal-rule-with-text {
+  display: grid;
+  justify-content: center;
 }
-
-button {
-  color: white;
-  text-transform: uppercase;
+form {
+  margin: 0 2px;
 }
-
-input::placeholder,
-textarea::placeholder {
-  color: white;
-  font-family: sans-serif;
-}
+/* loader */
+/* 
+.half-circle-spinner, .half-circle-spinner * {
+      box-sizing: border-box;
+    }
+    .half-circle-spinner {
+      z-index: 2627;
+      width: 60px;
+      height: 60px;
+      border-radius: 100%;
+      position: fixed;
+      top:45%;
+      left: 40%;
+    }
+    .half-circle-spinner .circle {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 100%;
+      border: calc(60px / 10) solid transparent;
+    }
+    .half-circle-spinner .circle.circle-1 {
+      border-top-color: white;
+      animation: half-circle-spinner-animation 1s infinite;
+    }
+    .half-circle-spinner .circle.circle-2 {
+      border-bottom-color: #1d92ff;
+      animation: half-circle-spinner-animation 1s infinite alternate;
+    }
+    @keyframes half-circle-spinner-animation {
+      0% {
+        transform: rotate(0deg);
+      }
+      100%{
+        transform: rotate(360deg);
+      }
+    } */
 </style>
