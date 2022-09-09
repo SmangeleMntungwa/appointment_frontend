@@ -32,7 +32,7 @@ const userRowTemplate = document.querySelector("[data-user-row]");
 const loader = document.querySelector("[loader]");
 
 const people = new Promise(async (res, rej) => {
-  const response = await fetch("https://randomuser.me/api/?results=100");
+  const response = await fetch("https://smangele-api.herokuapp.com/");
   const data = await response.json();
   const { results } = data;
   console.log(results);

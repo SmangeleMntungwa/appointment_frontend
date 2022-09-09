@@ -1,60 +1,151 @@
 <template>
-  <section id="contact">
-    <div class="contact-box">
-      <div class="contact-links">
-        <h2>CONTACT</h2>
-        <div class="links">
-          <div class="link">
-            <a
-              href="https://www.linkedin.com/in/smangele-mntungwa-b17b921b0/"
-              target="_blank"
-              ><img
-                src="https://i.postimg.cc/m2mg2Hjm/linkedin.png"
-                alt="linkedin"
-            /></a>
-          </div>
-          <div class="link">
-            <a href="https://github.com/SmangeleMntungwa" target="_blank"
-              ><img src="https://i.postimg.cc/YCV2QBJg/github.png" alt="github"
-            /></a>
-          </div>
-          <div class="link">
-            <a href="mailto:mangie696@gmail.com"
-              ><img src="https://i.postimg.cc/NjLfyjPB/email.png" alt="email"
-            /></a>
+  <!--Appointment Section-->
+  <section class="appointment-section">
+    <div class="container">
+      <div class="sec-title">
+        <h2>Contact</h2>
+      </div>
+      <div class="row clearfix">
+        <!--Form Column-->
+        <div class="form-column col-md-8 col-sm-12 col-xs-12">
+          <div class="inner-column">
+            <!-- Default Form -->
+            <div class="default-form">
+              <!--Contact Form-->
+              <form
+                @submit.prevent="handleSubmit"
+                action="https://formspree.io/f/xpznqlyp"
+                method="POST"
+              >
+                <div class="row clearfix">
+                  <div class="column col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        name="Name"
+                        placeholder="Name"
+                        required
+                      />
+                    </div>
+
+                    <!--Form Group-->
+                    <div class="form-group">
+                      <input
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        required
+                      />
+                    </div>
+
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="Subject"
+                        name="text"
+                        placeholder="Subject"
+                        required
+                      />
+                      <!-- <i class="far fa-calendar-alt"></i> -->
+                    </div>
+                  </div>
+
+                  <div class="column col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        name="Last_name"
+                        placeholder="Last_name"
+                        required
+                      />
+                    </div>
+
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        name="phone"
+                        placeholder="Phone"
+                        required
+                      />
+                    </div>
+
+                    <div class="form-group">
+                      <input
+                        class="timepicker"
+                        type="text"
+                        name="Message"
+                        placeholder="Message"
+                      />
+                      <i class="far fa-clock"></i>
+                    </div>
+                  </div>
+
+                  <div
+                    class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group"
+                  >
+                    <button
+                      class="theme-btn appointment-btn"
+                      type="submit"
+                      name="submit-form"
+                    >
+                      Send
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!--End Default Form -->
           </div>
         </div>
-      </div>
-      <div class="contact-form-wrapper">
-        <form
-          @submit.prevent="handleSubmit"
-          action="https://formspree.io/f/xpznqlyp"
-          method="POST"
-        >
-          <div class="form-item">
-            <input type="text" v-model="name" required />
-            <label>Name:</label>
-          </div>
-          <div class="form-item">
-            <input type="text" v-model="email" required />
-            <label>Email:</label>
-          </div>
-          <div class="form-item">
-            <input type="text" v-model="subject" required />
-            <label>Subject:</label>
-          </div>
-          <div class="form-item">
-            <textarea v-model="message" required></textarea>
-            <label>Message:</label>
-          </div>
-          <button class="submit-btn">Send</button>
-          <div v-if="loading">
-            <div class="half-circle-spinner">
-              <div class="circle circle-1"></div>
-              <div class="circle circle-2"></div>
+
+        <!--Form Column-->
+        <div class="schedule-column col-md-4 col-sm-12 col-xs-12">
+          <div class="inner-outer">
+            <div class="inner-column">
+              <div class="contact-links">
+                <div class="links">
+                  <div class="link">
+                    <h4>GET ME:</h4>
+
+                    <ul class="time-list">
+                      <li>
+                        Linkin:
+                        <a
+                          href="https://www.linkedin.com/in/smangele-mntungwa-b17b921b0/"
+                          target="_blank"
+                          ><img
+                            src="https://i.postimg.cc/m2mg2Hjm/linkedin.png"
+                            alt="linkedin"
+                        /></a>
+                      </li>
+
+                      <li>
+                        Github:
+                        <a
+                          href="https://github.com/SmangeleMntungwa"
+                          target="_blank"
+                          ><img
+                            src="https://i.postimg.cc/YCV2QBJg/github.png"
+                            alt="github"
+                        /></a>
+                    
+                      </li>
+
+                       <li>
+                        Email:
+                        <a href="mailto:mangie696@gmail.com"
+                      ><img
+                        src="https://i.postimg.cc/NjLfyjPB/email.png"
+                        alt="email"
+                    /></a>
+                       </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   </section>
@@ -105,205 +196,186 @@ export default {
 </script>
 
 <style scoped>
-/* loader */
-.half-circle-spinner,
-.half-circle-spinner * {
-  box-sizing: border-box;
-}
-.half-circle-spinner {
-  z-index: 2627;
-  width: 60px;
-  height: 60px;
-  border-radius: 100%;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-}
-.half-circle-spinner .circle {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 100%;
-  border: calc(60px / 10) solid transparent;
-}
-.half-circle-spinner .circle.circle-1 {
-  border-top-color: white;
-  animation: half-circle-spinner-animation 1s ;
-}
-.half-circle-spinner .circle.circle-2 {
-  border-bottom-color: #1d92ff;
-  animation: half-circle-spinner-animation 1s alternate;
-}
-@keyframes half-circle-spinner-animation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-#contact {
-  background-color: #6a9ac4;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.contact-box {
-  width: clamp(100px, 90%, 1000px);
-  margin: 80px 50px;
-  display: flex;
-  flex-wrap: wrap;
-}
-.contact-links,
-.contact-form-wrapper {
+.contact-links {
   width: 50%;
   padding: 8% 5% 10% 5%;
 }
-.contact-links {
-  background-color: white;
-  background: radial-gradient(
-      circle at 55% 92%,
-      #426691 0 12%,
-      transparent 12.2%
-    ),
-    radial-gradient(circle at 94% 72%, #b4c8e0 0 10%, transparent 10.2%),
-    radial-gradient(
-      circle at 20% max(78%, 350px),
-      #263a53 0 7%,
-      transparent 7.2%
-    ),
-    radial-gradient(circle at 0% 0%, #cad2dc 0 40%, transparent 40.2%), #dbe5f2;
-  border-radius: 10px 0 0 10px;
+
+li,
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
-.contact-form-wrapper {
-  background-color: #ffffff8f;
-  border-radius: 0 10px 10px 0;
+.sec-title {
+  position: relative;
+  padding-bottom: 40px;
 }
-@media only screen and (max-width: 800px) {
-  .contact-links,
-  .contact-form-wrapper {
-    width: 100%;
-  }
-  .contact-links {
-    border-radius: 10px 10px 0 0;
-  }
-  .contact-form-wrapper {
-    border-radius: 0 0 10px 10px;
-  }
+.sec-title .title {
+  position: relative;
+  color: #0a0b0b;
+  font-size: 18px;
+  font-weight: 700;
+  padding-right: 50px;
+  margin-bottom: 15px;
+  display: inline-block;
+  text-transform: capitalize;
 }
-@media only screen and (max-width: 400px) {
-  .contact-box {
-    width: 95%;
-    margin: 8% 5%;
-  }
+.sec-title .title:before {
+  position: absolute;
+  content: "";
+  right: 0;
+  bottom: 7px;
+  width: 40px;
+  height: 1px;
+  background-color: #bbb;
 }
-h2 {
-  font-family: "Arimo", sans-serif;
+.sec-title h2 {
+  position: relative;
+  color: #252525;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.5em;
+  display: block;
+}
+.sec-title.light h2 {
   color: #fff;
-  font-size: clamp(30px, 6vw, 60px);
-  letter-spacing: 2px;
-  text-align: center;
-  transform: scale(0.95, 1);
 }
-.links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding-top: 50px;
+.appointment-section {
+  position: relative;
+  padding: 110px 0 80px;
 }
-.link {
-  margin: 10px;
-  cursor: pointer;
+.appointment-section .form-column {
+  position: relative;
+  margin-bottom: 40px;
 }
-img {
-  width: 45px;
-  height: 45px;
-  filter: hue-rotate(220deg) drop-shadow(2px 4px 4px #0006);
-  transition: 0.2s;
-  user-select: none;
-}
-img:hover {
-  transform: scale(1.1, 1.1);
-}
-img:active {
-  transform: scale(1.1, 1.1);
-  filter: hue-rotate(220deg) drop-shadow(2px 4px 4px #222) sepia(0.3);
-}
-.form-item {
+.default-form {
   position: relative;
 }
-label,
-input,
-textarea {
-  font-family: "Poppins", sans-serif;
-}
-label {
-  position: absolute;
-  top: 10px;
-  left: 2%;
-  color: #999;
-  font-size: clamp(14px, 1.5vw, 18px);
-  pointer-events: none;
-  user-select: none;
-}
-input,
-textarea {
-  width: 100%;
-  outline: 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.default-form .form-group {
+  position: relative;
   margin-bottom: 20px;
-  padding: 12px;
-  font-size: clamp(15px, 1.5vw, 18px);
 }
-input:focus + label,
-input:valid + label,
-textarea:focus + label,
-textarea:valid + label {
-  font-size: clamp(13px, 1.3vw, 16px);
-  color: #777;
-  top: -20px;
-  transition: all 0.225s ease;
+.default-form .form-group i {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  color: #070808;
+  font-size: 18px;
 }
-.submit-btn {
-  background-color: #003459;
-  filter: drop-shadow(2px 2px 3px #0003);
-  color: #fff;
-  font-family: "Poppins", sans-serif;
-  font-size: clamp(16px, 1.6vw, 18px);
+.default-form .form-group input[type="text"],
+.default-form .form-group input[type="tel"],
+.default-form .form-group input[type="email"],
+.default-form .form-group select {
+  position: relative;
   display: block;
-  padding: 12px 20px;
-  margin: 2px auto;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  user-select: none;
-  transition: 0.2s;
+  width: 100%;
+  line-height: 28px;
+  padding: 10px 20px;
+  color: #000;
+  height: 50px;
+  font-size: 13px;
+  background: #fff;
+  border: 1px solid #d7d7d7;
+  -webkit-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
-.submit-btn:hover {
-  transform: scale(1.1, 1.1);
+.default-form .form-group input[type="text"]:focus,
+.default-form .form-group input[type="tel"]:focus,
+.default-form .form-group input[type="email"]:focus,
+.default-form .form-group textarea:focus {
+  border-color: #070707;
 }
-.submit-btn:active {
-  transform: scale(1.1, 1.1);
-  filter: sepia(0.5);
+.default-form .form-group textarea {
+  position: relative;
+  display: block;
+  width: 100%;
+  line-height: 22px;
+  padding: 15px 20px;
+  color: #797979;
+  height: 120px;
+  background: #fff;
+  resize: none;
+  font-size: 14px;
+  border: 1px solid #d7d7d7;
+  -webkit-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
-@media only screen and (max-width: 800px) {
-  h2 {
-    font-size: clamp(40px, 10vw, 60px);
-  }
+.default-form .form-group .appointment-btn {
+  position: relative;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 11px 30px;
+  margin-top: 10px;
+  display: inline-block;
+  background-color: #080808;
+  border: 1px solid #050a0b;
+  text-transform: uppercase;
+  color: #fff;
 }
-@media only screen and (max-width: 400px) {
-  h2 {
-    font-size: clamp(30px, 12vw, 60px);
-  }
-  .links {
-    padding-top: 30px;
-  }
-  img {
-    width: 38px;
-    height: 38px;
-  }
+.default-form .form-group .btn-detail {
+  position: relative;
+  color: #777;
+  font-size: 15px;
+  margin-left: 35px;
+  display: inline-block;
+}
+.appointment-section .schedule-column {
+  position: relative;
+}
+.appointment-section .schedule-column .inner-outer {
+  position: relative;
+  padding-left: 20px;
+  padding-bottom: 20px;
+}
+.appointment-section .schedule-column .inner-outer:before {
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: 0;
+  width: 347px;
+  height: 268px;
+  background: url(https://i.ibb.co/gjZ1NFM/pattern-Appoinment.png) no-repeat;
+}
+.appointment-section .schedule-column .inner-column {
+  position: relative;
+  padding: 25px 30px;
+  border: 2px solid #090909;
+  background-color: #fff;
+}
+.appointment-section .schedule-column h2 {
+  position: relative;
+  color: #252525;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.4em;
+  margin-bottom: 15px;
+}
+.appointment-section .schedule-column .time-list {
+  position: relative;
+}
+.appointment-section .schedule-column .time-list li {
+  position: relative;
+  color: #777;
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+.appointment-section .schedule-column .time-list li:last-child {
+  margin-bottom: 0;
+}
+.appointment-section .schedule-column .time-list li strong {
+  color: #222;
+  font-weight: 700;
+}
+.appointment-section .schedule-column .time-list .closed {
+  position: relative;
+  color: #050707;
 }
 </style>

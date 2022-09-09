@@ -74,7 +74,7 @@ export default {
   methods: {
     editProduct() {
       if (this.isadmin == true) {
-        fetch("https://mullins-marine-api.herokuapp.com/product/" + this.id, {
+        fetch("https://smangele-api.herokuapp.com/product/" + this.id, {
           method: "PUT",
           body: JSON.stringify({
             title: this.title,
@@ -98,7 +98,7 @@ export default {
   },
   mounted() {
     if (localStorage.getItem("jwt")) {
-      fetch("https://mullins-marine-api.herokuapp.com/users/oneuser/", {
+      fetch("https://smangele-api.herokuapp.com/users/oneuser/", {
         method: "GET",
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -109,15 +109,12 @@ export default {
         .then((json) => {
           if (json.isadmin == true) {
             this.isadmin = json.isadmin;
-            fetch(
-              "https://mullins-marine-api.herokuapp.com/product/" + this.id,
-              {
-                method: "GET",
-                headers: {
-                  "Content-type": "application/json; charset=UTF-8",
-                },
-              }
-            )
+            fetch("https://smangele-api.herokuapp.com/product/" + this.id, {
+              method: "GET",
+              headers: {
+                "Content-type": "application/json; charset=UTF-8",
+              },
+            })
               .then((response) => response.json())
               .then((json) => {
                 this.product = json;

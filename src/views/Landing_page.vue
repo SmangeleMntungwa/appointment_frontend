@@ -1,39 +1,37 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/pic.jpg" />
-    <h1></h1>
-  </div>
-</template>
-<script>
-export default {};
-</script>
-<style scoped>
-img {
-  height: inherit;
-  width: 100px;
-  animation: myAnim 2s ease 0s 1 normal forwards;
+  <header>
+    <div class="landing-left">
+      <h1>Hello_______</h1>
+      <h2>I am sive</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum rem
+        blanditiis et doloribus suscipit. Inventore sit quos ratione temporibus.
+        At.
+      </p>
+    </div>
+    <div class="landing-right">
+      <img src="https://picsum.photos/200" alt="pic" />
+    </div>
+  </header>
+  </template>
+    
+  <script>
+    export default {};
+  </script>
+
+  <style scoped>
+  
+.landing-right {
+  background: black;
+  border-radius: 50%;
+  width: fit-content;
+  padding: 20px;
+  aspect-ratio: 1;
+  display: grid;
+  place-content: center;
 }
-@keyframes myAnim {
-  0% {
-    transform: scale3d(1, 1, 1);
-  }
-  30% {
-    transform: scale3d(1.25, 0.75, 1);
-  }
-  40% {
-    transform: scale3d(0.75, 1.25, 1);
-  }
-  50% {
-    transform: scale3d(1.15, 0.85, 1);
-  }
-  65% {
-    transform: scale3d(0.95, 1.05, 1);
-  }
-  75% {
-    transform: scale3d(1.05, 0.95, 1);
-  }
-  100% {
-    transform: scale3d(1, 1, 1);
-  }
+
+.landing-right img {
+  border-radius: 50%;
 }
 </style>

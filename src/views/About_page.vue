@@ -56,6 +56,13 @@ export default {};
 </script>
 
 <style scoped>
+.About-container {
+position:relative;
+padding: 110px 0 80px;
+}
+.h1, h1{
+  margin-top: 3rem;
+}
 .myImage {
   float: left;
   height: 20%;
@@ -65,5 +72,11 @@ export default {};
 }
 .heading {
   float: right;
+  position: relative;
+  color: #252525;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.5em;
+  display: block;
 }
 </style>
