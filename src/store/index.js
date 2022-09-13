@@ -3,28 +3,28 @@ import { createStore } from 'vuex'
 import router from '@/router';
 import { nextTick } from 'vue';
 
-const api = "https://smangele-api.herokuapp.com";
+const api = "https://smangele-api.herokuapp.com/";
 console.log(api);
 
 export default createStore({
   state: {
-    patient: null,
-    Patients: null,
+    user: null,
+    users: null,
     token: null,
     Therapy: null,
-    One_therapy: null,
+    one_therapy: null,
     return :{
-      showLoading: null,
+      showLoading: !null,
     }
   },
   getters: {
   },
   mutations: {
-    setPatients:(state, Patients) =>{
-      state.Patients = Patients;
+    setUsers:(state, users) =>{
+      state.users = users;
     },
-    setPatients:(state, Patients) =>{
-      state.Patients = Patients;
+    setUser:(state, user) =>{
+      state.user = user;
     },
     setToken:(state, token) =>{
       state.token = token;
@@ -32,11 +32,11 @@ export default createStore({
     setTherapy:(state, Therapy) =>{
       state.Therapy = Therapy;
     },
-    setOne_therapy:(state, One_therapy) =>{
-      state.One_therapy = One_therapy;
+    setOne_therapy:(state,one_therapy) =>{
+      state.one_therapy = one_therapy;
     },
     logOut(state){
-      state.patient = null,
+      state.user = null,
       state.token = null
     },
     setShowLoading(state){
@@ -45,39 +45,39 @@ export default createStore({
     },
     sortTherapybyCategory: (state) => {
       state.Therapy = state.programs.sort((a, b) => {
-        if (a.price < b.price) {
+        if (a.category < b.category) {
           return -1;
         }
-        if (a.price > b.price) {
+        if (a.category > b.category) {
           return 1;
         }
         return 0;
       });
       if (!state.asc) {
-        state.books.reverse();
+        state.Therapy.reverse();
       }
       state.asc = !state.asc;
     },
-    sortBooksbyTitle: (state) => {
-      state.books = state.programs.sort((a, b) => {
-        if (a.title < b.title) {
+    sortTherapybyTitle: (state) => {
+      state.Therapy = state.programs.sort((a, b) => {
+        if (a.Therapy < b.Therapy) {
           return -1;
         }
-        if (a.title > b.title) {
+        if (a.Therapy > b.Therapy) {
           return 1;
         }
         return 0;
       });
       if (!state.asc) {
-        state.books.reverse();
+        state.Therapy.reverse();
       }
       state.asc = !state.asc;
     },
 
   },
   actions: { 
-     getpatient :async (context,token) => {
-      fetch('https://smangele-api.herokuapp.com/Patients/verify',{
+     getUser :async (context,token) => {
+      fetch('https://smangele-api.herokuapp.com/users/verify',{
         method:"GET",
         headers: {
           "Content-Type": "application/json",
@@ -85,30 +85,29 @@ export default createStore({
         }
       })
       .then((res) => res.json())
-      .then((patientdata) => {
-        console.log(patientdata);
-        context.commit('setPatient', patientdata)
+      .then((userdata) => {
+        console.log(userdata);
+        context.commit('setUser', userdata)
       })
     },
+
     login: async (context, payload) => {
-
-
-      let res = await fetch("https://smangele-api.herokuapp.com/Patients/login", {
+   let res = await fetch("https://smangele-api.herokuapp.com/users/login", {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
         },
         body:
         JSON.stringify({
-          email: payload.email,
-          password: payload.password,
+          email:payload.email,
+          password:payload.password,
         }),
       })
       .then(res => res.json())
-      .then(tokendata=>{
+      .then(tokendata =>{
         console.log(tokendata.token);
         context.commit('setToken', tokendata.token),
-        fetch('https://smangele-api.herokuapp.com/Patients/verify',{
+        fetch('https://smangele-api.herokuapp.com/users/verify',{
           method:"GET",
           headers: {
             "Content-Type": "application/json",
@@ -116,9 +115,9 @@ export default createStore({
           }
         })
         .then((res) => res.json())
-        .then((patientdata) => {
-          console.log(patientdata);
-          context.commit('setPatient', patientdata)
+        .then((userdata) => {
+          console.log(userdata);
+          context.commit('setUser', userdata)
         });
         window.alert("Logged in")
         router.push('/Therapy')
@@ -130,20 +129,19 @@ export default createStore({
     register: async (context, data) => {
       console.log("working");
       const {
-        full_name,
-        password,
-        phone_number,
         email,
-        join_date,  
+        password,
+        full_name,
+        phone,
         user_type,     
-        cart,
+        
       } = data;
-      fetch("https://smangele-api.herokuapp.com/Patients/register", {
+      fetch("https://smangele-api.herokuapp.com/users/register", {
         method: "POST",
         body: JSON.stringify({
           full_name: full_name,
           password: password,
-          phone_number: phone_number,
+          phone: phone,
           email: email,
           user_type: user_type,
           // cart: cart,          
@@ -155,69 +153,72 @@ export default createStore({
         .then((response) => response.json())
         .then((json) => {
           console.log(json);
-          context.commit("setPatients", json)
+          context.commit("setusers", json)
         });
       router.push("/login");
     },
     getUsers: async (context) => {
-      fetch("https://smangele-api.herokuapp.com/Patients")
+      fetch("https://smangele-api.herokuapp.com/users")
         .then((response) => response.json())
-        .then((Patients) => context.commit("setPatients", Patients));
+        .then((users) => context.commit("setUsers", users));
     },
     getUser: async (context, id) => {
-      fetch("https://smangele-api.herokuapp.com/Patients/" + id)
+      fetch("https://smangele-api.herokuapp.com/users/" + id)
         .then((response) => response.json())
-        .then((Patients) => context.commit("setPatient", patient[0]));
+        .then((user) => context.commit("setUser", user[0]));
     },
-    getBooks: async (context) => {
+    getTherapy: async (context) => {
       fetch("https://smangele-api.herokuapp.com/Therapy/")
         .then((response) => response.json())
         .then((Therapy) => context.commit("setTherapy", Therapy));
     },
-    addBook: async (context, One_therapy) => {
-      console.log(One_therapy);
-      fetch("https://smangele-api.herokuapp.com/One_therapy", {
+    addOne_Therapy: async (context, one_Therapy) => {
+      console.log(one_Therapy);
+      fetch("https://smangele-api.herokuapp.com/Therapy", {
         method: "POST",
-        body: JSON.stringify(One_therapy),
+        body: JSON.stringify(one_Therapy),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
         },
       })
         .then((response) => response.json())
-        .then((One_therapydata) => {
-         console.log(One_therapydata);
+        .then((one_Therapydata) => {
+         console.log(one_Therapydata);
           context.commit("setTherapy")
         });
     },
-    deleteBook: async (context, id) => {
+    deleteOne_Therapy: async (context, id) => {
       fetch(`${api}/Therapy/${id}`, {
         method: "DELETE",
       })
       .then((response) => response.json())
       .then(() => context.dispatch("getTherapy"));
     },
-    updateBook: async (context, payload) => {
+    updateOne_therapy: async (context, payload) => {
       console.log("updating");
+
       const {
+        Therapy_id,
         title,
-        author,
-        publisher,
+        description,
         category,
-        price,  
-        quantity,     
-        imgURL,
+        image,
+        Appointment_date,  
+        Start_time,     
+        End_time,
       } = payload;
       fetch("https://smangele-api.herokuapp.com/Therapy/" + payload.id, {
         method: "PUT",
         body: JSON.stringify({
+          Therapy_id: Therapy_id,
           title: title,
-          author: author,
-          publisher: publisher,
-          category: category,
-          price: price,
-          quantity:quantity,
-          imgURL: imgURL,
-          // cart: cart,          
+          description: description,
+           category: category,
+          image:image,
+         Appointment_date: Appointment_date,
+          Start_time:Start_time,
+         End_time: End_time,
+                 
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -229,9 +230,9 @@ export default createStore({
           context.commit("setTherapy", data)
         });
     },
-    addUser: async (context, patient) => {
+    addUser: async (context, user) => {
       console.log(user);
-      fetch("https://smangele-api.herokuapp.com/Patients/", {
+      fetch("https://smangele-api.herokuapp.com/users", {
         method: "POST",
         body: JSON.stringify(user),
         headers: {
@@ -239,40 +240,38 @@ export default createStore({
         },
       })
         .then((response) => response.json())
-        .then((patientdata) => {
-         console.log(patientdata);
-          context.commit("setPatients")
+        .then((Userdata) => {
+         console.log(Userdata);
+          context.commit("setUsers")
         });
     },
     deleteUser: async (context, Id) => {
-      fetch(`${api}/Patients/${Id}`, {
+      fetch(`${api}/users/${Id}`, {
         method: "DELETE",
       })
       .then((response) => response.json())
-      .then(() => context.dispatch("getPatients"));
+      .then(() => context.dispatch("getUser"));
     },
-    updatepatient: async (context, payload) => {
+    updateUser: async (context, payload) => {
       console.log("updating");
       const {
+        user_Id,
+         email,  
+         password,
         full_name,
-        password,
-        phone_number,
-        category,
-        email,  
-        join_date,     
+        phone,
         user_type,
       } = payload;
-      fetch("https://smangele-api.herokuapp.com/Therapy/" + payload.id, {
+      fetch("https://smangele-api.herokuapp.com/Therapy/" + payload.Id, {
         method: "PUT",
         body: JSON.stringify({
+          user_Id: user_Id,
+           email: email,
+            password: password,
           full_name: full_name,
-          password: password,
-          phone_number: phone_number,
-          category: category,
-          email: email,
-          join_date:join_date,
+         phone: phone,
           user_type: user_type,
-          // cart: cart,          
+                
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -281,7 +280,7 @@ export default createStore({
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
-          context.commit("setPatient", data)
+          context.commit("setUser", data)
         });}
     
     

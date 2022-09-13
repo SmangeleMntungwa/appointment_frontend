@@ -12,26 +12,20 @@
             <!-- Default Form -->
             <div class="default-form">
               <!--Contact Form-->
-              <form method="post" action="contact.html">
+              <form @submit.prevent="Sign_up">
                 <div class="row clearfix">
                   <div class="column col-md-6 col-sm-6 col-xs-12">
                     <div class="form-group">
                       <input
                         type="text"
-                        name="username"
-                        placeholder="Name"
+                        name="full_name"
                         required
+                        v-model="full_name"
+                        placeholder="Name"
                       />
                     </div>
 
                     <!--Form Group-->
-                    <div class="form-group">
-                      <select class="custom-select-box">
-                        <option>User_type</option>
-                        <option>Admin</option>
-                        <option>Patient</option>
-                      </select>
-                    </div>
 
                     <div class="form-group">
                       <input
@@ -41,9 +35,8 @@
                         required
                       />
                     </div>
-                  </div>
 
-                  <div class="column col-md-6 col-sm-6 col-xs-12">
+                    <!-- <div class="column col-md-6 col-sm-6 col-xs-12">
                     <div class="form-group">
                       <input
                         type="text"
@@ -51,7 +44,7 @@
                         placeholder="Surname"
                         required
                       />
-                    </div>
+                    </div> -->
 
                     <div class="form-group">
                       <input
@@ -62,17 +55,6 @@
                       />
                     </div>
 
-                    <div class="form-group">
-                      <input
-                        type="text"
-                        class="datepicker"
-                        name="text"
-                        placeholder="Join Date"
-                        required
-                      />
-                      <i class="far fa-calendar-alt"></i>
-                    </div>
-
                     <!-- <div class="form-group">
                       <input
                         type="email"
@@ -81,15 +63,39 @@
                         required
                       />
                     </div> -->
-                  </div>
 
-                  <div
-                    class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group"
-                  >
+                    <div
+                      class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group"
+                    >
+                      <div class="form-group">
+                        <select class="custom-select-box">
+                          <option>User_type</option>
+                          <option>Admin</option>
+                          <option>Patient</option>
+                          <input
+                            type="text"
+                            name="user_type"
+                            required
+                            v-model="user_type"
+                            placeholder="user type"
+                          />
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                        <input
+                          type="password"
+                          name="password"
+                          placeholder="Password"
+                          required
+                        />
+                      </div>
+                    </div>
                     <button
+                      @click="Register"
                       class="theme-btn appointment-btn"
                       type="submit"
-                      name="submit-form"
+                      value="Register"
                     >
                       Submit
                     </button>
@@ -97,9 +103,9 @@
                 </div>
               </form>
             </div>
-            <!--End Default Form -->
           </div>
         </div>
+        <!--End Default Form -->
       </div>
     </div>
   </section>

@@ -1,37 +1,75 @@
 <template>
   <header>
-    <div class="landing-left">
-      <h1>Hello_______</h1>
-      <h2>I am sive</h2>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum rem
-        blanditiis et doloribus suscipit. Inventore sit quos ratione temporibus.
-        At.
-      </p>
-    </div>
-    <div class="landing-right">
-      <img src="https://picsum.photos/200" alt="pic" />
-    </div>
-  </header>
-  </template>
+    <h2>Welcome to</h2>
+    <h1>VUMILANGA'S</h1>
+    <h1>HOUSE OF HEALING</h1>
     
-  <script>
-    export default {};
-  </script>
+    <router-link to="/Sign_in"
+      ><button class="theme-btn appointment-btn" role="button">
+        Sign_in
+      </button></router-link
+    >
+  </header>
+</template>
 
-  <style scoped>
-  
-.landing-right {
-  background: black;
-  border-radius: 50%;
-  width: fit-content;
-  padding: 20px;
-  aspect-ratio: 1;
-  display: grid;
-  place-content: center;
+<script>
+export default {};
+</script>
+<style scoped>
+* {
+  padding: 0px;
+  margin: 0px;
+  font-family: monospace;
 }
 
-.landing-right img {
-  border-radius: 50%;
+header {
+  height: 100vh;
+  background-image: url("https://i.postimg.cc/FsmSDX7z/httpsi-postimg-ccc-CCm9-Kd7-Copy-of-Untitled-Design-2-webp.webp");
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-size: cover;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+.main {
+  width: 90%;
+  max-width: 100%;
+  margin: 10px 5% 0 5%;
+  font-size: 1.4em;
+  line-height: 1.4em;
+  /*padding: 15px;*/
+  background-color: #eee;
+  height: 100vh;
+}
+
+.main p {
+  padding: 10px;
+}
+#down {
+  position: absolute;
+  top: 85vh;
+  size: 40px;
+  padding: 20px;
+  font-size: 2.5em;
+}
+
+#down:hover {
+  cursor: pointer;
+  background-color: #eee;
+  opacity: 0.8;
+}
+.appointment-btn {
+  position: relative;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 11px 30px;
+  margin-top: 10px;
+  display: inline-block;
+  background-color: #080808;
+  border: 1px solid #050a0b;
+  text-transform: uppercase;
+  color: #fff;
 }
 </style>

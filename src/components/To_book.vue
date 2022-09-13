@@ -36,12 +36,12 @@
         </div>
         <div class="col-md-12">
           <label class="labels">Name of Therapy</label
-          ><input type="text" class="form-control" v-model="Therapy_name" />
+          ><input type="text" class="form-control" v-model="title" />
         </div>
 
         <div class="col-md-12">
           <label class="labels">Image Link</label
-          ><input type="text" class="form-control" v-model="Therapy_image" />
+          ><input type="text" class="form-control" v-model="image" />
         </div>
       </div>
 
@@ -59,10 +59,13 @@ export default {
   data() {
     return {
       isadmin: false,
-      Therapy_name: "",
-      Therapy_description: "",
-      Therapy_catergory: "",
-      Therapy_image: "",
+      title: "",
+      description: "",
+      catergory: "",
+      image: "",
+      Appointment_date: "",
+      Start_time: "",
+      End_time: "",
     };
   },
   methods: {
@@ -71,10 +74,10 @@ export default {
         fetch("https://smangele-api.herokuapp.com/Therapy/", {
           method: "POST",
           body: JSON.stringify({
-            Therapy_name: this.Therapy_name,
-            Therapy_description: this.Therapy_description,
-            Therapy_catergory: this.Therapy_catergory,
-            Therapy_image: this.Therapy_image,
+            title: this.title,
+            description: this.description,
+            catergory: this.catergory,
+            image: this.image,
           }),
           headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -84,7 +87,7 @@ export default {
           .then((response) => response.json())
           .then((json) => {
             alert("Product Created");
-            return this.$router.push({ name: "Shop" });
+            return this.$router.push({ name: "All_items" });
           });
       }
     },

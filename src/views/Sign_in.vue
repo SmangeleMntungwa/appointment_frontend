@@ -1,5 +1,6 @@
 <template>
   <!--Appointment Section-->
+
   <section class="appointment-section">
     <div class="container">
       <div class="sec-title">
@@ -12,69 +13,29 @@
             <!-- Default Form -->
             <div class="default-form">
               <!--Contact Form-->
-              <form method="post" action="contact.html">
+              <form @submit.prevent="Sign_in">
                 <div class="row clearfix">
-                  <div class="column col-md-6 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                      <input
-                        type="text"
-                        name="username"
-                        placeholder="Name"
-                        required
-                      />
-                    </div>
-
-                    <!--Form Group-->
-                    <!-- <div class="form-group">
-                      <select class="custom-select-box">
-                        <option>Therapy Catogaries</option>
-                        <option>Category One</option>
-                        <option>Category Two</option>
-                        <option>Category Three</option>
-                        <option>Category Four</option>
-                      </select>
-                    </div> -->
-
-                    <!-- <div class="form-group">
-                      <input
-                        type="text"
-                        class="datepicker"
-                        name="text"
-                        placeholder="Schedule Date"
-                        required
-                      />
-                      <i class="far fa-calendar-alt"></i>
-                    </div> -->
-                  </div>
-
                   <div class="column col-md-6 col-sm-6 col-xs-12">
                     <div class="form-group">
                       <input
                         type="email"
                         name="email"
+                        required v-model= "email"
                         placeholder="Email"
-                        required
+                        
                       />
                     </div>
-
-                    <!-- <div class="form-group">
+                  </div>
+                  <div class="column col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-group">
                       <input
                         type="text"
-                        name="phone"
-                        placeholder="Phone"
-                        required
+                        name="text"
+                        required v-model= "password"
+                        placeholder="Password"
+                      
                       />
-                    </div> -->
-
-                    <!-- <div class="form-group">
-                      <input
-                        class="timepicker"
-                        type="text"
-                        name="schedule"
-                        placeholder="Schedule Time"
-                      />
-                      <i class="far fa-clock"></i>
-                    </div> -->
+                    </div>
                   </div>
 
                   <div
@@ -83,7 +44,7 @@
                     <button
                       class="theme-btn appointment-btn"
                       type="submit"
-                      name="submit-form"
+                      value="login"
                     >
                       Submit
                     </button>
@@ -94,9 +55,8 @@
             <!--End Default Form -->
           </div>
         </div>
-
-        <!--Form Column-->
       
+        <!--Form Column-->
       </div>
     </div>
   </section>
@@ -105,27 +65,26 @@
 <script>
 export default {
   computed: {
-    patient() {
-      return this.$store.state.patient;
+    user() {
+      return this.$store.state.user;
     },
   },
   data() {
     return {
-      Patient_email: "",
-      Patient_password: "",
+      email: "",
+      password: "",
     };
   },
   methods: {
     login() {
       this.$store.dispatch("login", {
-        Patient_email: this.email,
-        Patient_password: this.password,
+        email: this.email,
+        password: this.password,
       });
     },
   },
 };
 </script>
-
 
 <style scoped>
 li,
